@@ -145,6 +145,9 @@ class embed_block_for_github {
 
 						$body = wp_remote_retrieve_body( $request );
 						$data = json_decode( $body );
+
+                        error_log( print_r( $data, true ), 3, __DIR__ . '/debug_custom.log' );
+
 						if ( ! is_wp_error( $response ) ) {
 							set_transient( '_ebg_repository_' . sanitize_title_with_dashes( $github_url ), json_encode( $data ) );
 							if (isset( $data->message ) ) 
